@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
 import Dataset from '../components/common/Dataset';
 import Input from "../components/common/Input";
 import Radio from '../components/common/Radio';
 import {getSubCategories} from "../services/subCategoryServices"
-import { createProduct} from "../services/productServices"
+import { createProduct, getProduct,editProduct} from "../services/productServices"
 
-function CreateProduct() {
+function EditProduct() {
 
     const [basicData, setBasicData] = useState({
         name: "",
@@ -19,8 +19,7 @@ function CreateProduct() {
         description: "",
         material: "",
         warranty: "",
-        categoryId: "",
-        tags: ""
+        categoryId: ""
     })
     const [variation, setVariation] = useState({
         color: "",
@@ -28,10 +27,10 @@ function CreateProduct() {
         quantity: 1
     })
 
-    const [frontImage, setFrontImage] = useState(null)
-    const [images, setImages] = useState(null)
+    
     const [dimensions, setDimensions] = useState([])
     const [categories, setCategories] = useState([])
+
 
     const colors = ["red", "blue", "green", "yellow", "black", "pink", "purple"]
     const sizes = ["0-3 month", "4-6 month", "7-9 month", "10-12 month", "13-15 month", "16-18 month", "19-21 month", "21-24 month", "New Born", "Free Size"]
@@ -70,10 +69,43 @@ function CreateProduct() {
         }
     }
 
+    const id = useParams().id
     useEffect(() => {
         async function fetchData() {
           const {data} = await getSubCategories()
          setCategories(data)
+
+         const {data: product} = await getProduct(id)
+         
+         const dim = []
+         for (let i = 0; i < product.dimensions.length; i++)
+         {
+            
+            
+            for (let j = 0; j <product.dimensions[i].variations.length; j++)
+            {
+                
+                dim.push({
+                    size: product.dimensions[i].size,
+                    color: product.dimensions[i].variations[j].color,
+                    quantity: product.dimensions[i].variations[j].quantity,
+                })
+            }
+        }
+       
+        setDimensions(dim)
+        
+         setBasicData({
+             name:product.name,
+             regularPrice: product.regularPrice,
+             discountPercentage: product.discountPercentage,
+             gender: product.gender,
+             isSale: product.isSale === true ? "true" : "false",
+             description: product.description,
+             material: product.material,
+             warranty: product.warranty,
+             categoryId: product.categoryId.subCategoryName
+         })
         }
         fetchData();
         
@@ -83,8 +115,7 @@ function CreateProduct() {
 
     const handleOnSubmit = async (e) => {
         e.preventDefault()
-        console.log(images)
-        console.log(frontImage)
+      
         let  data = []
         let selectedSizes = []
         let index = -1; 
@@ -146,14 +177,7 @@ function CreateProduct() {
         {
             return toast.error("Please Select at least 1 variation")
         }
-        if (frontImage === null)
-        {
-            return toast.error("Please upload front Image ")
-        }
-        if (images === null)
-        {
-            return toast.error("Please upload Images ")
-        }
+      
 
         index = -1
         for(let i = 0; i < categories.length; i++)
@@ -181,32 +205,17 @@ function CreateProduct() {
         formData.append("categoryId", categories[index]._id)
         formData.append("description", basicData.description)
         
-        for (let key of Object.keys(images)) {
-            formData.append('images', images[key])
-        }
 
         data.forEach(item => {
             formData.append(`dimensions`, JSON.stringify(item));
           });
-        for (const keys of Object.keys(frontImage)) {
-                formData.append('frontImage', frontImage[keys])
-        }
-        await createProduct(formData)
+      
+        await editProduct(formData, id)
 
         navigate("/product")
         
     }
-    const handleOnFileChange = (e) => {
-        const name = e.currentTarget.name
-        const file = e.target.files
-        if (file) {
-            if (name === "frontImage")
-                setFrontImage(file)
-            else {
-                setImages(file)
-            }
-        }
-    }
+   
 
     const handlevariationChange = ({ currentTarget: input }) => {
         const data = { ...variation }
@@ -285,7 +294,7 @@ function CreateProduct() {
                                         <td key={el.color + index}>{el.color}</td>
                                         <td key={el.size + index}>{el.size}</td>
                                         <td key={el.quantity + index}>{el.quantity}</td>
-                                        <td> <i className="bi bi-pencil-square pe-3" onClick={() => handleEditVariation(index)}></i>  <button type="button" className="btn-close" aria-label="Close" onClick={() => handleRemoveVariation(index)}></button></td>
+                                        <td> <i className="bi bi-pencil-square pe-3" onClick={() => handleEditVariation(index)}></i> <button type="button" className="btn-close" aria-label="Close" onClick={() => handleRemoveVariation(index)}></button></td>
                                     </tr>
                                 )
                             })}
@@ -347,23 +356,14 @@ function CreateProduct() {
 
                 <div className="mb-3 row">
                     <div className="col-sm-6">
-                        <Radio title="Gender" name="gender" selected = {basicData.gender} onChange={handleDataChange} data={genderData} />
+                        <Radio title="Gender" name="gender" onChange={handleDataChange}  selected = {basicData.gender} data={genderData} />
                     </div>
                     <div className="col-sm-6">
-                        <Radio title="For Sale" name="isSale" selected = {basicData.isSale} onChange={handleDataChange} data={saleData} />
+                        <Radio title="For Sale" name="isSale" onChange={handleDataChange}  selected = {basicData.isSale} data={saleData} />
                     </div>
                 </div>
 
-                <div className="mb-3 row">
-                    <div className="col-sm-6">
-                        <label htmlFor="formFile" className="form-label">Front Image</label>
-                        <input className="form-control" name="frontImage" type="file" id="formFile" onChange={handleOnFileChange} />
-                    </div>
-                    <div className="col-sm-6">
-                        <label htmlFor="formFileMultiple" className="form-label">Images</label>
-                        <input className="form-control" name="images" type="file" id="formFileMultiple" onChange={handleOnFileChange} multiple />
-                    </div>
-                </div>
+                
                 <div className="mb-3 row">
                     <div className="col-sm-6">
                         <Input type="text" title="Material:" placeholder="Material:" name="material" value={basicData.material} onChange={handleDataChange} error="" />
@@ -414,4 +414,4 @@ function CreateProduct() {
     )
 }
 
-export default CreateProduct
+export default EditProduct

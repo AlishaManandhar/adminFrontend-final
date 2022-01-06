@@ -20,15 +20,15 @@ export  function getProduct(id) {
   return result
 }
 
-export  function editCategory(request_data, id) {
+export  function editProduct(request_data, id) {
   let result = http.put(apiEndpoint + id,request_data)
   return result
 }
 
 
 
-export  function deleteCategory(id) {
-    let result = http.delete(apiEndpoint + id)
+export  function deleteProduct(id) {
+    let result = http.put(apiEndpoint + "delete/" + id)
     return result
   }
   

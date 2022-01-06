@@ -16,6 +16,7 @@ import CreateSubCategory from "./views/CreateSubCategory";
 import EditSubCategory from "./views/EditSubCategory";
 import CreateProduct from "./views/CreateProduct";
 import Product from "./views/Products";
+import EditProduct from "./views/EditProduct";
 
 
 function App() {
@@ -37,6 +38,8 @@ function App() {
           <Route path="/category/edit/:id" exact element={<EditCategory />} />
           <Route path="/product/create" exact element={<CreateProduct />} />
           <Route path="/product" exact element={<Product />} />
+          <Route path="/product/edit/:id" exact element={<EditProduct />} />
+
 
           <Route path="/login" exact element={<Login />} />
           <Route path="/blogs/create-blog" exact element={<CreateBlog />} />
