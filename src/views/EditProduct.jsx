@@ -32,7 +32,7 @@ function EditProduct() {
     const [categories, setCategories] = useState([])
 
 
-    const colors = ["red", "blue", "green", "yellow", "black", "pink", "purple"]
+    const colors = ["red", "blue", "green", "yellow", "black", "pink", "purple","orange","brown"]
     const sizes = ["0-3 month", "4-6 month", "7-9 month", "10-12 month", "13-15 month", "16-18 month", "19-21 month", "21-24 month", "New Born", "Free Size"]
     const header = ["color", "size", "quantity", "action"]
     const warranty = ["None", "7days", "1month", "2 month", "6month", "1year"]
@@ -139,6 +139,7 @@ function EditProduct() {
                         quantity: dimensions[i].quantity
                     }]
                 })
+                
             }
         }
         if (basicData.name.length <= 5)
@@ -205,11 +206,10 @@ function EditProduct() {
         formData.append("categoryId", categories[index]._id)
         formData.append("description", basicData.description)
         
-
-        data.forEach(item => {
-            formData.append(`dimensions`, JSON.stringify(item));
-          });
-      
+       
+        formData.append('dimensions', JSON.stringify(data))
+    
+  
         await editProduct(formData, id)
 
         navigate("/product")

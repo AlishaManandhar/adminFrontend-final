@@ -46,6 +46,7 @@ function App() {
           <Route path="/blogs/:id" exact element={<SingleBlog />} />
           <Route path="/blogs/edit-blog/:id" exact element={<EditBlog />} />
         </Routes>
+        
       </div>
     </div>
   );

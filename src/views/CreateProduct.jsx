@@ -33,7 +33,7 @@ function CreateProduct() {
     const [dimensions, setDimensions] = useState([])
     const [categories, setCategories] = useState([])
 
-    const colors = ["red", "blue", "green", "yellow", "black", "pink", "purple"]
+    const colors = ["red", "blue", "green", "yellow", "black", "pink", "purple","sky","white","orange","grey","brown"]
     const sizes = ["0-3 month", "4-6 month", "7-9 month", "10-12 month", "13-15 month", "16-18 month", "19-21 month", "21-24 month", "New Born", "Free Size"]
     const header = ["color", "size", "quantity", "action"]
     const warranty = ["None", "7days", "1month", "2 month", "6month", "1year"]
@@ -185,9 +185,9 @@ function CreateProduct() {
             formData.append('images', images[key])
         }
 
-        data.forEach(item => {
-            formData.append(`dimensions`, JSON.stringify(item));
-          });
+     
+            formData.append(`dimensions`, JSON.stringify(data));
+        
         for (const keys of Object.keys(frontImage)) {
                 formData.append('frontImage', frontImage[keys])
         }

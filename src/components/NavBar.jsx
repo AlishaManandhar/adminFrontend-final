@@ -45,8 +45,8 @@ function NavBar() {
                   Products
                 </Link>
                 <ul className="dropdown-menu dropdown-menu-dark bg-dark" aria-labelledby="offcanvasNavbarDropdown">
-                  <li><Link className="dropdown-item text-light" to="/">All Products</Link></li>
-                  <li><Link className="dropdown-item" to="/">Add Products</Link></li>
+                  <li><Link className="dropdown-item text-light" to="/product">All Products</Link></li>
+                  <li><Link className="dropdown-item" to="/product/create">Add Products</Link></li>
                 </ul>
               </li>
               <li className="nav-item dropdown">
