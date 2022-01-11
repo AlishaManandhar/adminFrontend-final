@@ -33,6 +33,7 @@ function SingleBlog() {
     return (
         data && (
             <div className="pt-3">
+                
                 <div className="row justify-content-center">
                     <div className="col-sm-12 col-md-6">
                         <h1 className='text-center text-capitalize'>{data.title}</h1>

@@ -9,4 +9,10 @@ export  function login(request_data) {
   
   }
 
+export  function logout() {
+  localStorage.removeItem("token")
+  window.location = "/login"
+}
+
+
 

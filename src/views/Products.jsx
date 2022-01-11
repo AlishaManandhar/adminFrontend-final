@@ -55,10 +55,11 @@ function Product() {
     return (
         products &&
         <div className="row">
+            <h2 className="text-center pb-3">All Products</h2>
             <div className="table-responsive">
                 <table className='table table-striped'>
                     <TableHead header={header} />
-                    <TableBody param={body} content={getPagedData()} editLink="/product/edit" onDelete={handleOnDelete} title="Delete Category" msg="Are you sure to delete this category" confirm="Delete" />
+                    <TableBody param={body} content={getPagedData()} editLink="/product/edit" onDelete={handleOnDelete} title="Delete Product" msg="Are you sure to delete this product" confirm="Delete" />
                 </table>
             </div>
             <Pagination

@@ -5,6 +5,7 @@ import { toast } from "react-toastify"
 axios.interceptors.response.use(
     res => {
         const msg = res.data
+        
         if ("message" in msg)
         {
             toast.success(msg.message)
@@ -12,6 +13,14 @@ axios.interceptors.response.use(
         return res.data
     },
     err=> {
+        if (err.response.status ===401)
+        {
+            window.location = "/login"
+        }
+        if (err.response.status ===403)
+        {
+            window.location = "/login"
+        }
             if (err.response.status >= 400)
             {
                 return Promise.reject(err)

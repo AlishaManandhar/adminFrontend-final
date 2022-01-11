@@ -44,6 +44,7 @@ function Category() {
     return (
         categories &&
         <div className="row">
+            <h2 className="text-center pb-3">All Category</h2>
             <div className="table-responsive">
                 <table className='table table-striped'>
                     <TableHead header={header} />

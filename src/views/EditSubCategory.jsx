@@ -90,6 +90,7 @@ function EditSubCategory() {
 
     return (
         <div className="row justify-content-center">
+            <h2 className="text-center pb-3">Edit Sub Category</h2>
         <div className="col-sm-12 col-md-4">
             <form onSubmit={handleOnSubmit} >
 

@@ -337,7 +337,7 @@ function EditProduct() {
 
     return (
         <div>
-            <h2> Add Product</h2>
+            <h2> Edit Product</h2>
             <form name="product-form" onSubmit={(e) => handleOnSubmit(e)}>
 
                 <Input type="text" title="Product name:" placeholder="Product name:" name="name" value={basicData.name} onChange={handleDataChange} error="" />

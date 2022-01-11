@@ -31,6 +31,7 @@ function AdminHome() {
     return (
         blogs &&
         <div className="row">
+            <h2 className="text-center pb-3">All Blogs</h2>
             <div className="table-responsive">
                 <table className='table table-striped'>
                     <TableHead header={header} />

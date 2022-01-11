@@ -49,6 +49,7 @@ function SubCategory() {
     return (
         categories &&
         <div className="row">
+            <h2 className="text-center pb-3">Sub Category </h2>
             <div className="table-responsive">
                 <table className='table table-striped'>
                     <TableHead header={header} />

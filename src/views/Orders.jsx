@@ -45,7 +45,7 @@ function Order() {
     };
     return (
         <>
-        <div className="text-center">
+        <div className="text-center mb-3">
 <button type="button" class="btn btn-primary pe-3 me-3" onClick = {() => handleOrder("Pending")}>Pending Orders</button>
         <button type="button" class="btn btn-info pe-3 me-3" onClick={() => handleOrder("Processing")}>Processing  Orders</button>
         <button type="button" class="btn btn-success pe-3 me-3" onClick={() => handleOrder("Shipped")}>Shipped  Orders</button>

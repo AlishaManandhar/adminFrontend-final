@@ -35,7 +35,7 @@ class Login extends Form {
       localStorage.setItem('userId', result.data._id)
     
   
-      window.location = "/"
+      window.location = "/order"
 
     }
     catch (e) {
@@ -52,13 +52,7 @@ class Login extends Form {
     }
   };
 
-  async componentDidMount(){
-    if (localStorage.getItem("token"))
-    {
-        window.location = "/"
-    }
-  
-  }
+ 
 
   render() {
     return (

@@ -1,6 +1,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { logout } from '../services/authServices'
 
 
 function NavBar() {
@@ -73,7 +74,7 @@ function NavBar() {
                 </Link>
                 <ul className="dropdown-menu dropdown-menu-dark bg-dark" aria-labelledby="offcanvasNavbarDropdown">
                   {/* <li><Link className="dropdown-item text-light" to="/">Change Password</Link></li> */}
-                  <li><Link className="dropdown-item" to="/">LogOut</Link></li>
+                  <li><Link className="dropdown-item" to="/" onClick={() => logout()}>LogOut</Link></li>
                 </ul>
               </li>
             </ul>
