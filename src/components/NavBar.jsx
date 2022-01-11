@@ -21,14 +21,14 @@ function NavBar() {
 
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link className="nav-link active" to="/">Dashboard</Link>
-              </li>
-              <li className="nav-item">
+              </li> */}
+              {/* <li className="nav-item">
                 <Link className="nav-link" to="/">Sales</Link>
-              </li>
+              </li> */}
               <li className="nav-item">
-                <Link className="nav-link" to="/">Orders</Link>
+                <Link className="nav-link" to="/order">Orders</Link>
               </li>
               <li className="nav-item dropdown">
                 <Link className="nav-link dropdown-toggle" to="/" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -58,7 +58,7 @@ function NavBar() {
                   <li><Link className="dropdown-item" to="/blogs/create-blog">New Blog</Link></li>
                 </ul>
               </li>
-              <li className="nav-item dropdown">
+              {/* <li className="nav-item dropdown">
                 <Link className="nav-link dropdown-toggle" to="/" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Configuration
                 </Link>
@@ -66,13 +66,13 @@ function NavBar() {
                   <li><Link className="dropdown-item text-light" to="/">Carousel Management</Link></li>
                   <li><Link className="dropdown-item" to="/">Sections Management</Link></li>
                 </ul>
-              </li>
+              </li> */}
               <li className="nav-item dropdown">
                 <Link className="nav-link dropdown-toggle" to="/" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   My Account
                 </Link>
                 <ul className="dropdown-menu dropdown-menu-dark bg-dark" aria-labelledby="offcanvasNavbarDropdown">
-                  <li><Link className="dropdown-item text-light" to="/">Change Password</Link></li>
+                  {/* <li><Link className="dropdown-item text-light" to="/">Change Password</Link></li> */}
                   <li><Link className="dropdown-item" to="/">LogOut</Link></li>
                 </ul>
               </li>

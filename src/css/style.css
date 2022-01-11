@@ -1,0 +1,24 @@
+.order-product-table tr td:nth-child(2){
+
+    font-weight: bold;
+    font-size: large;
+}
+
+.order-product-table tr td{
+    font-size: large;
+}
+
+.processOrder{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    text-transform: uppercase;
+    background-color: #070707;
+    font-weight:400;
+    text-decoration: none;
+    color:rgb(233, 231, 231);
+}
+
+.processOrder:hover{
+    opacity: 0.8;
+}

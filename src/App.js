@@ -17,8 +17,10 @@ import EditSubCategory from "./views/EditSubCategory";
 import CreateProduct from "./views/CreateProduct";
 import Product from "./views/Products";
 import EditProduct from "./views/EditProduct";
+import Order from "./views/Orders";
+import SingleOrder from "./views/SingleOrder";
 
-
+import "./css/style.css"
 function App() {
   return (
     <div className="container-fluid">
@@ -38,6 +40,8 @@ function App() {
           <Route path="/category/edit/:id" exact element={<EditCategory />} />
           <Route path="/product/create" exact element={<CreateProduct />} />
           <Route path="/product" exact element={<Product />} />
+          <Route path="/order" exact element={<Order />} />
+          <Route path="/order/:id" exact element={<SingleOrder />} />
           <Route path="/product/edit/:id" exact element={<EditProduct />} />
 
 
